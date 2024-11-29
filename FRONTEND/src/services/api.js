@@ -1,16 +1,18 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // Replace with your API URL
+  baseURL: "http://localhost:9999/api", // Replace with your API URL
+  withCredentials: true, // Include cookies in cross-origin requests
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = Cookies.get("authToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    // const token = Cookies.get("token");
+    // console.log("token ", config);
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
     return config;
   },
   (error) => Promise.reject(error)

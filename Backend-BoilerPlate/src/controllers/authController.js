@@ -39,7 +39,10 @@ const loginUser = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      domain: "localhost", // Make sure the domain matches for frontend and backend
+      sameSite: "Strict", // Or 'Lax', depending on your use case
     });
+
     res.json({ userId: user._id, name: user.name, email: user.email });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error: error.message });
