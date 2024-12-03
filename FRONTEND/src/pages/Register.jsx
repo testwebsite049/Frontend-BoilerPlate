@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -77,6 +77,12 @@ const Register = () => {
           <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             Register
           </Button>
+          <Typography variant="h6" component="h1" gutterBottom>
+            Already have an account.{" "}
+            <Button component={Link} to="/Login">
+              Login
+            </Button>
+          </Typography>
         </Box>
       </Box>
     </Container>

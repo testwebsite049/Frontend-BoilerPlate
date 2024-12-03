@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(credentials);
-      navigate("/"); // Redirect to home after successful login
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed!");
     }
@@ -65,6 +65,10 @@ const Login = () => {
           <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
             Login
           </Button>
+          <Typography variant="h6" component="h1" gutterBottom>
+            Don&apos;t have an account ?{" "}
+            <Button component={Link} to="/register" >Register</Button>
+          </Typography>
         </Box>
       </Box>
     </Container>

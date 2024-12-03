@@ -36,11 +36,12 @@ const loginUser = async (req, res) => {
     }
 
     const token = generateToken(user._id);
-    res.cookie("token", token, {
-      httpOnly: true,
+
+    // Set the cookie
+    res.cookie("authToken", token, {
       secure: process.env.NODE_ENV === "production",
-      domain: "localhost", // Make sure the domain matches for frontend and backend
-      sameSite: "Strict", // Or 'Lax', depending on your use case
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     res.json({ userId: user._id, name: user.name, email: user.email });
